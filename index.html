@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+		<!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <script src="plugin/markdown/marked.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+          <div>Game Reverse Engineering 101</div>
+          <div class="small">oder wie modifiziere ich ein Spiel?</div>
+        </section>
+        <section> <!-- Was ist RE -->
+          <section>
+            <div>Was ist Reverse Engineering?</div>
+          </section>
+          <section>
+            <div>Spiele werden im Normalfall in einer Hochsprache entwickelt</div>
+            <pre><code class="c++">int main() {
+  Game myGame;
+  myGame.init();
+  while(myGame.running) {
+    // Maus und Tastatur abfragen
+    // Spiel updaten
+    // Spiel auf den Bildschirm zeichen
+  }
+  return 0;
+}</code></pre>
+          </section>
+          <section>
+            <div>Dieser Code wird kompiliert und in Maschinensprache übersetzt</div>
+            <pre><code class="asm">mov     ds:dword_55606C, ecx
+add     edx, [eax+0Ch]
+add     ebx, [eax+10h]
+add     edx, ds:dword_5D1BD0[ebx*4]
+add     edx, ds:dword_5913C8
+mov     esi, eax
+mov     edi, edx
+mov     eax, [esi+4]
+mov     ebx, [esi+8]
+mov     ecx, [esi]
+...</code></pre>
+          </section>
+          <section>
+              <div>Und wenn das nicht schon schlimm genug wäre...</div>
+              <pre><code class="asm">00011010110111010101000101011001000110101101110101010001010111111</code></pre>
+          </section>
+          <section>
+            ... gut für einen 🖥️ und schlecht für 🤷🏻‍♂️
+          </section>
+        </section>
+        <section>
+          <div>Wir gehen nun den umgekehrten Weg</div>
+          <ul>
+            <li>Einsen und Nullen mit einem Disassambler in Maschinensprache übersetzen</li>
+            <li>Decompiler können den Assembler-Code in eine Hochsprache übersetzen</li>
+            <li>Decompiled != Original</li>
+          </ul>
+        </section>
+        <section>
+          Man versucht nun diesen Maschinencode zu lesen und Rückschlüsse daraus auf den originalen Code zu ziehen
+        </section>
+        <section> <!-- Warum RE? -->
+          <div>Wieso macht man sich die Mühe?</div>
+          <ul>
+            <li>Neugier</li>
+            <li>Spaß</li>
+            <li>Profit</li>
+            <li>Anerkennung</li>
+          </ul>
+        </section>
+        <section> <!-- Was kann man damit machen? -->
+          <div>Was kann man mit Reverse Engineering anstellen?</div>
+          <ul>
+            <li>Remakes / Open Source Engines <span class="small">(OpenRA, OpenAge, freeablo)</span></li>
+            <li>Patches <span class="small">(Bugfixes)</span></li>
+            <li>Modifikationen <span class="small">(TurboHUD)</span></li>
+            <li>Cheats <span class="small">(Trainer, Wallhacks, Aimbot)</span></li>
+            <li>Private Server <span class="small">(WoW)</span></li>
+            <li>Cracks</li>
+          </ul>
+        </section>
+        <section>
+          Was benötige ich?
+        </section>
+        <section> <!-- Was benoetige ich? -->
+          <section>
+            <div>Disassembler (IDA)</div>
+            <img src="images/ida_silver.png">
+          </section>
+          <section>
+            <div>Memory Scanner (Cheat Engine)</div>
+            <img src="images/ce_silver.png">
+          </section>
+          <section>
+            <div>Debugger (x64dbg)</div>
+            <img src="images/x64dbg_silver.png">
+          </section>
+          <section>
+            <div>Decompiler (Snowman)</div>
+            <img src="images/snowman_silver.png">
+          </section>
+          <section>
+            <div>Struct Dissector (ReClassEx)</div>
+            <img src="images/reclass_silver.png">
+          </section>
+        </section>
+        <section>
+          <div>Wir erstellen einen einfachen Cheat!</div>
+        </section>
+        <section>
+          <section>
+            <div>Cheat Engine öffnen und ans Spiel hängen</div>
+            <img src="images/open_cheat_engine.png">
+          </section>
+          <section>
+            <div>Einen einfach zu beeinflussenden Wert auswählen</div>
+            <img src="images/silver_health_highlighted.png">
+          </section>
+          <section>
+            <div>Im Speicher nach dem Wert suchen</div>
+            <img src="images/cheat_engine_search_health.png">
+          </section>
+          <section>
+            <div>Wert im Spiel beeinflussen</div>
+            <img src="images/change_value_in_game.png">
+          </section>
+          <section>
+              <div>Nach dem neuen Wert suchen</div>
+              <img src="images/search_changed_value.png">
+            </section>
+          <section>
+            <div>Solange wiederholen bis wir den Wert sicher eingrenzen können 😴</div>
+          </section>
+          <section>
+            <div>Zur Sicherheit den Wert verändern</div>
+            <img src="images/change_value_in_cheat_engine.png">
+          </section>
+          <section>
+            <div>🎉🎉🎉</div>
+            <img src="images/silver_changed_value.png">
+          </section>
+          <section>
+            <div>Cheat Table anpassen und speichern</div>
+            <img src="images/save_cheat_table.png">
+          </section>
+          <section>
+            <div>So einfach geht das? 🤔</div>
+          </section>
+        </section>
+        <section>
+          <div>Es ist nur der erste Schritt auf einer langen Reise</div>
+        </section>
+        <section>
+          <div>Mein großes Ziel ist es einen Open Source Klon des Spiels Silver zu bauen</div>
+        </section>
+        <section>
+          
+        </section>
+        <section>
+          <section>
+            <div>Das Spiel verstehen</div>
+            <ul>
+              <li>Mit Cheat Engine im Speicher nach interessanten Werten suchen</li>
+              <li>Mit ReClassEx Strukturen und Klassen wiederherstellen</li>
+              <li>Bilder, Sounds, Levels und Texte extrahieren</li>
+            </ul>
+          </section>
+          <section>
+            <div>Das Spiel umbauen</div>
+            <ul>
+              <li>Die Exe zu einer DLL konvertieren</li>
+              <li>Einen Launcher schreiben welcher die DLL läd</li>
+              <li>Jede Funktion nach und nach mit meinen eigenen ersetzen</li>
+            </ul>
+          </section>
+          <section>
+            <div>Original Spiel kann jetzt entfernt werden</div>
+          </section>
+        </section>
+        <section>
+          <div>🎉 Dankeschön ❤️</div>
+          👏🏻👏🏻👏🏻👏🏻👏🏻
+        </section>
+        <section>
+          <div>Und weil das Thema so umfangreich ist könnt ihr mich gerne jederzeit Fragen</div>
+          <br>
+          <ul>
+            <li>Mail: michael@malura.de</li>
+            <li>Twitter: @devnetik</li>
+          </ul>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

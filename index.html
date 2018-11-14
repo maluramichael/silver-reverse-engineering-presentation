@@ -31,9 +31,11 @@
           <div>Game Reverse Engineering 101</div>
           <div class="small">oder: Wie modifiziere ich ein Spiel?</div>
           <aside class="notes">
-            Ich moechte euch heute erklaeren was reverse engineering ueberhaupt ist, was ich gelernt habe und was man so alles damit anstellen kann.
-            Reverse engineering betreiben hauptsaechlich Maleware Analysten da ich mich aber mit Spielen ganz gut auskenne und selber welche entwickle hab ich mir den Gaming Bereich zum lernen ausgesucht.
-            Ich hab selber erst vor einigen Wochen damit angefangen und mir Silver als Ziel ausgesucht weil ich das Spiel noch von frueher kenne und es ziemlich simpel ist.
+            Hallo und herzlich Willkommen.
+
+            Ich moechte euch heute erklaeren was reverse engineering ueberhaupt ist, was ich die letzten Wochen gelernt habe und was man so alles damit anstellen kann.
+            Reverse engineering betreiben hauptsaechlich Maleware Analysten, da ich mich aber mit Spielen ganz gut auskenne und selber welche entwickle hab ich mir den Gaming Bereich zum lernen ausgesucht.
+            Ich hab wie gesagt selber erst vor einigen Wochen damit angefangen und mir Silver als Ziel ausgesucht weil ich das Spiel noch von frueher kenne und es ziemlich simpel ist.
             Drum haben auch alle Bilder und Beispiele etwas mit Silver zu tun.
           </aside>
         </section>
@@ -42,7 +44,7 @@
             <div>Was ist Reverse Engineering?</div>
             <aside class="notes">
               Fangen wir an:
-              Reverse engineering bedeutet 'umgekeht entwickeln'. Man versucht also herauszufinden wie ein Spiel, Programm oder eine Webseite gebaut wurde um es dann entweder zu veraendern, erweitern oder auch nachzubauen.
+              Reverse engineering bedeutet 'umgekeht entwickeln'. Man versucht also herauszufinden wie ein Spiel gebaut wurde um es dann entweder zu veraendern, erweitern oder auch nachzubauen.
             </aside>
           </section>
           <section>
@@ -57,8 +59,8 @@
   return 0;
 }</code></pre>
           <aside class="notes">
-            Also ich entwickel meine Spiele hauptsaechlich in einer sogenannten Hochsprache.
-            Hier sieht man jetzt ein super simples Spiel in C++.
+            Hier sieht man ein super simples Spiel, schoen lesbar in C++.
+            Es wird der Gameloop gestartet und in jeder Frame wird der Input des Spielers abgefragt, die Logik des Spiels aktualisiert und dann alles auf den Bildschirm gezeichnet.
           </aside>
           </section>
           <section>
@@ -74,9 +76,9 @@ mov     ebx, [esi+8]
 mov     ecx, [esi]
 ...</code></pre>
             <aside class="notes">
-              Der Computer aber versteht keine Hochsprache.
-              Also wird der Hochsprachen Code in die Maschinensprache uebersetzt bzw compiliert.
-              Was ihr hier seht koennte jetzt ein Teil des simplen Spiels sein.
+              Was ihr hier seht koennte jetzt ein Teil des Spiels sein. Nicht mehr so einfach zu lesen.
+              Der Computer versteht naemlich keine Hochsprache und braucht was einfacheres.
+              Also wird der lesbare Code in die Maschinensprache uebersetzt bzw compiliert.
             </aside>
           </section>
           <section>
@@ -90,10 +92,10 @@ mov     ecx, [esi]
             <li>Neuer Code != Original Code</li>
           </ul>
           <aside class="notes">
-            Jetzt gehen wir den umgekehrten Weg.
-            Aus Binärcode wird Maschinensprache und daraus wieder lesbarer Code.
-            Aber Achtung: Der neue Code ist aufkeinenfall der selbe wie der Original Code.
-            Der Compiler optimiert beim Übersetzen den Code und dadurch gehen sehr viele Informationen des Original Codes verloren.
+            Wir gehen jetzt den umgekehrten Weg.
+            Aus dem Binärcode wird Maschinensprache und daraus lesbarer Code.
+            Aber Achtung: Der neue Code ist aufkeinenfall der selbe wie der Urspruengliche.
+            Der Compiler optimiert naemlich beim Übersetzen den Code und dadurch gehen sehr viele Informationen des Original Codes verloren.
             Zum Beispiel gibt es keine Variablennamen mehr, Schleifen werden aufgeloest und Kommentare entfernt.
           </aside>
         </section>

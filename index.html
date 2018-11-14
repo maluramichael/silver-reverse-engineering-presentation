@@ -31,14 +31,18 @@
           <div>Game Reverse Engineering 101</div>
           <div class="small">oder: Wie modifiziere ich ein Spiel?</div>
           <aside class="notes">
-            Ich moechte euch heute etwas ueber reverse engineering erzaehlen, was ich gelernt habe und was ich damit anstellen moechte. Das ganze speziell im Gaming Bereich und fuer meine Beispiel werde ich das Spiel Silver nutzen.
+            Ich moechte euch heute erklaeren was reverse engineering ueberhaupt ist, was ich gelernt habe und was man so alles damit anstellen kann.
+            Reverse engineering betreiben hauptsaechlich Maleware Analysten da ich mich aber mit Spielen ganz gut auskenne und selber welche entwickle hab ich mir den Gaming Bereich zum lernen ausgesucht.
+            Ich hab selber erst vor einigen Wochen damit angefangen und mir Silver als Ziel ausgesucht weil ich das Spiel noch von frueher kenne und es ziemlich simpel ist.
+            Drum haben auch alle Bilder und Beispiele etwas mit Silver zu tun.
           </aside>
         </section>
         <section>
           <section>
             <div>Was ist Reverse Engineering?</div>
             <aside class="notes">
-              Reverse engineering bedeutet 'umgekeht entwickeln'. Man versucht herauszufinden wie etwas gebaut wurde um es dann entweder zu veraendern, erweitern oder nachzubauen.
+              Fangen wir an:
+              Reverse engineering bedeutet 'umgekeht entwickeln'. Man versucht also herauszufinden wie ein Spiel, Programm oder eine Webseite gebaut wurde um es dann entweder zu veraendern, erweitern oder auch nachzubauen.
             </aside>
           </section>
           <section>
@@ -53,7 +57,8 @@
   return 0;
 }</code></pre>
           <aside class="notes">
-            Meist werden Spiele in einer sogenannten Hochsprache entwickelt. Das hier ist ein super simples Beispiel in C++. 
+            Also ich entwickel meine Spiele hauptsaechlich in einer sogenannten Hochsprache.
+            Hier sieht man jetzt ein super simples Spiel in C++.
           </aside>
           </section>
           <section>
@@ -69,7 +74,9 @@ mov     ebx, [esi+8]
 mov     ecx, [esi]
 ...</code></pre>
             <aside class="notes">
-              Der Computer versteht keine Hochsprache. Also wird dieser Code in die Maschinensprache uebersetzt (compiliert).
+              Der Computer aber versteht keine Hochsprache.
+              Also wird der Hochsprachen Code in die Maschinensprache uebersetzt bzw compiliert.
+              Was ihr hier seht koennte jetzt ein Teil des simplen Spiels sein.
             </aside>
           </section>
           <section>
@@ -83,20 +90,31 @@ mov     ecx, [esi]
             <li>Neuer Code != Original Code</li>
           </ul>
           <aside class="notes">
-            Beim Reverse engineering geht man nur umgekeht vor. Aus Binärcode wird Maschinensprache und daraus dann wieder eine Hochsprache. Der neue Code ist aufkeinenfall der selbe wie der der Original Code.
-            Der Compiler optimiert beim Übersetzen den Code und dadurch gehen sehr viele Informationen des Original Codes verloren. Zum Beispiel gibt es keine Variablennamen mehr, Schleifen werden aufgeloest und Kommentare entfernt.
+            Jetzt gehen wir den umgekehrten Weg.
+            Aus Binärcode wird Maschinensprache und daraus wieder lesbarer Code.
+            Aber Achtung: Der neue Code ist aufkeinenfall der selbe wie der Original Code.
+            Der Compiler optimiert beim Übersetzen den Code und dadurch gehen sehr viele Informationen des Original Codes verloren.
+            Zum Beispiel gibt es keine Variablennamen mehr, Schleifen werden aufgeloest und Kommentare entfernt.
           </aside>
         </section>
         <section>
           <img src="images/snowman_silver.png">
           <aside class="notes">
-            Hier sieht man jetzt so einen decompilierten Code. Man versucht jetzt beim reverse engineering Rückschlüsse daraus auf den original Code zu ziehen.
+            Hier sieht man jetzt so einen decompilierten Code. Sieht ganz schoen uebel aus oder?
+            Garnicht mehr so simpel wie in dem Beispiel vorhin.
+
+            Was macht man jetzt beim Reverse Engineering?
+            
+            Man liest den Maschinencode und versucht das Spiel zu verstehen. Der decompilierte Code hilft hier auch weiter weil man leichter sehen kann wie die Funktionen aufgebaut sind.
+            Man versucht das Spiel zu debuggen oder veraendert den Speicher waherend des Spielens.
+            
+            Mit den ganzen Informationen kann man jetzt das Spiel veraendern oder andere Dinge anstellen die ich euch gleich noch erklaeren moechte.
           </aside>
         </section>
         <section>
           <img src="images/but-why.jpg">
           <aside class="notes">
-            Ihr fragt euch sicherlich jetzt warum.
+            Ihr fragt euch sicherlich jetzt warum man sich die Muehe macht.
           </aside>
         </section>
         <section> <!-- Warum RE? -->
@@ -107,10 +125,10 @@ mov     ecx, [esi]
             <p class="fragment">Anerkennung</p>
           <aside class="notes">
             <ul>
-              <li>Neugier: Ich moechte wissen wie der Entwickler Funktion XY implementiert hat. Oder ob sich der Entwickler einen Spaß gemacht hat und irgendetwas im Spiel versteckt hat.</li>
+              <li>Neugier: Ich moechte wissen wie der Entwickler die Funktion XY implementiert hat. Oder ob er sich einen Spaß gemacht hat und irgendetwas im Spiel versteckt hat.</li>
               <li>Spaß: Es ist lustig sich einfach mal die tausendfache Stärke zu geben und unbesigbar durchs Spiel rennen zu können.</li>
-              <li>Profit: Natürlich gibt es auch Menschen die Ihre Hacks verkaufen.</li>
-              <li>Anerkennung: Es ist schön Lob von anderen zu bekommen wenn man etwas geschafft hat was nicht so vorgesehen ist.</li>
+              <li>Profit: Natürlich gibt es auch Menschen die Ihre Hacks verkaufen keine Frage.</li>
+              <li>Anerkennung: Es ist schön Lob von anderen zu bekommen wenn man etwas geschafft hat was nicht so vorgesehen war.</li>
             </ul>
           </aside>
         </section>
@@ -125,12 +143,12 @@ mov     ecx, [esi]
           <aside class="notes">
             <ul>
               <li>Also was kann man nun alles damit anstellen?</li>
-              <li>Remakes: Man kann alten Spielen ein neues Leben geben. Einige Spiele laufen nicht auf neuen System oder sind nur fuer eine Platform verfuegbar. Drum koennte man ein Remake des Spiels bauen welches auf neuen aktuellen Geraeten laueft.</li>
-              <li>Patches: Der Entwickler hat einen Fehler gemacht welcher nur auf einem neuen Windows auftritt? Dieser kann behoben werden.</li>
-              <li>Mods: In Diablo 3 fehlten den Spielern einige Funktionen wie der aktuelle "Schaden pro Sekunde" also wurde TurbuHUD entwickelt. Ein Overlay welches ganz viele Informationen ueber das original Spiel legt.</li>
-              <li>Oder GTA San Andreas. Das Spiel ist ein reines Single Player Abenteuer. Das passte einigen Entwicklern nicht also haben sie einen Multiplayer Mod geschrieben.</li>
-              <li>Private Server: Man erstellt einen eigenen Server fuer ein Multiplayer Spiel</li>
-              <li>Cheats: Man kann herausfinden wie die Trefferpunkte im Spiel berechnet werden und dann eine Funktion schreiben die einen unbesiegbar macht.</li>
+              <li>Remakes: Man kann alten Spielen ein neues Leben geben. Einige Spiele laufen nicht auf neuen System oder sind nur fuer eine Platform vorgesehen. Man koennte also ein Remake des Spiels bauen welches auf aktuellen Systemen laueft.</li>
+              <li>Patches: Der Entwickler hat einen Fehler gemacht und das Spiel stuerzt unter Windows 10 ab? Kein Problem wir koennen versuchen ihn zu fixen.</li>
+              <li>Mods: In Diablo 3 zum Beispiel fehlt eine Anzeige wie viel Schaden man jetzt gerade macht, also wurde TurbuHUD entwickelt. Ein Overlay welches alle moeglichen Informationen ueber Spiel legt.</li>
+              <li>GTA San Andreas ist ein reines Single Player Abenteuer. Drum haben sich eine schlaue Leute hingesetzt und einen Multiplayer Modus entwickelt.</li>
+              <li>Private Server: Bekanntlich kosten viele MMORPGs jeden Monta Geld. Es gibt fuer einige dieser MMOs inoffizielle Server. Die konnten nur entwickelt werden weil man voher reverse engineering betrieben hat um herauszufinden wie das Netzwerk Protokol funktioniert.</li>
+              <li>Cheats: Man kann unsterblich sein oder alle Gegenstaende freischalten. Ich wuerde sagen Cheats sind die einfachste Disziplin beim reverse engineering und man kommt recht schnell zu einem Ergebnis.</li>
             </ul>
           </aside>
         </section>
@@ -138,89 +156,128 @@ mov     ecx, [esi]
           <section>
             <div>Disassembler (IDA)</div>
             <img src="images/ida_silver.png">
+            <aside class="notes">
+              Ganz wichtig. Man braucht einen Disassambler. Man oeffnet damit das Spiel und sieht den compilierten Code als Maschinensprache. Oder auch hier als Graphen.
+              Das Program welches ihr hier seht nennt sich IDA. Die Pro Version davon kostet etwa 3000 Dollar. Wie man bei dem Preis schon vermuten kann ist das Tool auch sozusagen das NonPlusUltra in dem Bereich.
+              Es gibt noch Alternativen, die sind aber lange noch nicht so weit.
+            </aside>
           </section>
           <section>
             <div>Memory Scanner (Cheat Engine)</div>
             <img src="images/ce_silver.png">
+            <aside class="notes">
+              Auch sehr wichtig ist der Memory Scanner. Damit kann man schnell Werte suchen, berarbeiten und sogar das Spiel im laufenden Betrieb patchen.
+              Cheat Engine wird eigentlich immer als erstes hergenommen wenn man mit dem reversen startet. Damit findet man schnell wichtige Stellen im Speicher und kann sich von hier aus durch den Code arbeiten.
+            </aside>
           </section>
           <section>
             <div>Debugger (x64dbg)</div>
             <img src="images/x64dbg_silver.png">
+            <aside class="notes">
+              Mit dem Debugger kann man jetzt ganz langsam durch den Code gehen und sieht Live was passiert.
+            </aside>
           </section>
           <section>
             <div>Decompiler (Snowman)</div>
             <img src="images/snowman_silver.png">
+            <aside class="notes">
+              Das Bild haben wir eben schon gesehen. Das ist der Decompiler. Damit versucht man den bereits compilierten Code in etwas lesbares zu uebersetzen.
+            </aside>
           </section>
           <section>
             <div>Memory Dissector (ReClassEx)</div>
             <img src="images/reclass_silver.png">
+            <aside class="notes">
+              Eines meiner Lieblingstools. Hat ein bisschen was von Cheat Engine. Man kann sich damit einen Bereich im Speicher anschauen und Strukturen zusammenbauen, Variablennamen und Datentypen vergeben.
+              Man baut also waehren das Spiel laeuft Strukturen zusammen und bekommt Informationen darueber wie das Spiel Daten im Speicher ablegt.
+            </aside>
           </section>
           <section>
             <div>Binary Parser (Kaitai Struct)</div>
             <img src="images/kaitai.jpg">
+            <aside class="notes">
+              Auch ein ziemlich cooles Tool. Kaitai ist ein compiler fuer Binaerformate. Man kann sich damit eine Beschreibung einer Binaerdatei zusammenbauen und dann daraus code generieren lassen.
+              Mit dem Code kann man dann diese Bianerdateien lesen und schreiben.
+            </aside>
           </section>
         </section>
         <section>
           <div>Demo</div>
           <aside class="notes">
-            Ich moechte euch MEINE ersten Schritte zeigen. Leider kann ich das jetzt nicht live zeigen aber ihr koennt mich gerne nachher mal ansprechen dann zeig ich es euch an meinem anderen Rechner.
+            Ich moechte euch jetzt mal MEINE ersten Schritte zeigen. Weil mein aktueller Rechner nicht der schnellste ist und hab ich ein paar Screenshots vorbereitet. Wer will kann mich aber gerne nachher ansprechen dann koennen wir das ganze mal am Rechner ausprobieren.
           </aside>
         </section>
         <section>
           <section>
             <img src="images/open_cheat_engine.png">
             <aside class="notes">
-              Cheat Engine öffnen und ans Spiel hängen.
+              Wir oeffnen also Cheat Engine und haengen uns ans Spiel um den Speicher auszulesen.
             </aside>
           </section>
           <section>
             <img src="images/silver_health_highlighted.png">
             <aside class="notes">
-              Wir suchen einen einfach zu beeinflussenden Wert auswählen. In diesem Fall das aktuelle Leben.
+              Nun suchen wir uns einen einfach zu beeinflussenden Wert aus. Ich hab mich hier in diesem Fall fuer das aktuelle Leben entschieden.
             </aside>
           </section>
           <section>
             <img src="images/cheat_engine_search_health.png">
             <aside class="notes">
-              Jetzt suchen wir nach diesem Wert im Speicher des Spiels.
+              Jetzt muss man ein wenig rumprobieren. Lebenspunkte sind normalerweise als Integer abgespeichert, daher stet der Value Type auf 4 Bytes und nicht auf Float oder String. Als Wert gebe ich 132 ein und druecke New Scan.
+              Wir haben jetzt 100 moegliche Stellen im Speicher gefunden in denen aktuell 132 steht.
+
             </aside>
           </section>
           <section>
             <img src="images/change_value_in_game.png">
             <aside class="notes">
-              Zurueck im Spiel muessen wir den Wert veraendern. Ich lasse mich jetzt hier einfach von einem Gegner treffen.
+              Zurueck im Spiel muessen wir den Wert irgendwie veraendern. Dazu lass mich einfach von einem Gegner treffen und reduziere die Lebenspunkte. Genauso haette ich auch einen Trank trinken koennen.
             </aside>
           </section>
           <section>
-              <img src="images/search_changed_value.png">
-              <aside class="notes">
-                Wenn wir jetzt nach dem neuen Wert suchen werden nur die vorher gefundenen Werte durchsucht. Jeder Wert der nicht dem neuen passt wird verworfen.
-                Normalerweise muss man das ganze jetzt einige Male wiederholen bis man sich sicher ist das man den richtigen Wert gefunden hat.
-              </aside>
-            </section>
+            <img src="images/search_changed_value.png">
+            <aside class="notes">
+              Wieder in Cheat Engine gebe ich den neuen Wert ein und druecke auf Next Scan. Damit werden nur die bereits gefunden 100 Stellen erneut ueberprueft. Alle anderen werden verworfen.
+              Wir haben jetzt Glueck und finden sofort nur noch eine einzige Stelle.
+              Normalerweise muss man das ganze jetzt einige Male wiederholen bis man sich sicher ist das man den richtigen Wert gefunden zu haben.
+            </aside>
+          </section>
           <section>
             <img src="images/change_value_in_cheat_engine.png">
             <aside class="notes">
-              Jetzt aendern wir die Stelle im Speicher und ueberpruefen ob wir die richtige Variable gefunden haben.
+              Ich aendere den Wert jetzt im Speicher und ueberpruefe ob wir die richtige Variable gefunden haben.
             </aside>
           </section>
           <section>
             <div>🎉🎉🎉</div>
             <img src="images/silver_changed_value.png">
+            <aside class="notes">
+              Und siehe da wir sind praktisch unbesiegbar.
+            </aside>
           </section>
           <section>
             <img src="images/save_cheat_table.png">
             <aside class="notes">
-              Die sog. Cheat Table koennte jetzt noch angepasst und erweitert werden. Wir koennen unseren Fortschritt auch speichern und spaeter hier wieder weiter machen.
+              Die sog. Cheat Table hier unten koennte jetzt noch angepasst und erweitert werden.
+              Wenn man sich ein bisschen mit dem Entwickeln von Spielen auskennt weiß man dass die Mana des Spielers in der Naehe des Lebens sein muss.
+              Normalerweise haengt alles was irgendwie miteinander zutun hat zusammen im Speicher. 
+              Wir koennen unseren Fortschritt auch speichern und spaeter hier wieder weiter machen.
             </aside>
           </section>
           <section>
             <div>🤔</div>
             <aside class="notes">
               Ihr fragt euch sicherlich: Das ist ja nur eine kleiner Memory Hack. Wir wollen doch Spiele modifizieren.
-              Ja das stimmt auch aber es ist ein kleiner Schritt auf einer ganz langen Reise.
-              Beim Reverse Engineering geht es darum viele Informationen zu finden und sich zu nutze zu machen.
-              Wir wissen jetzt wo im Speicher das Leben des Spielers steht von hier aus koennen wir uns durch den Code hangeln.
+
+              Ja das stimmt, aber das ist ein kleiner Schritt auf einer ganz langen Reise.
+
+              Beim Reverse Engineering ist es wichtig viele Informationen zu sammeln und damit man es spaeter leichter hat.
+
+              Wir wissen jetzt wo im Speicher der Spieler steht, von hier aus koennen wir uns durch den Code hangeln.
+              Ich hab zum Beispiel rausgefunden wo die Liste aller Gegner ist weil nicht weiter vom Leben des Spielers auch der aktuell makierte Gegner stand.
+              Das ist einfach nur ein Zeiger der auf ein Element in einer Liste gezeigt hat.
+
+              Was ich mit der Information anstelle weiß ich noch nicht :)
             </aside>
           </section>
         </section>
@@ -228,39 +285,45 @@ mov     ecx, [esi]
           <section>
             <img src="images/fullCheat.png">
             <aside class="notes">
-              Ich moechte euch jetzt kurz meinen Weg auf der langen Reise zeigen.
+              Jetzt will ich euch kurz meinen Weg auf der langen Reise zeigen.
               Zu aller erst hab ich natuerlich mit Cheat Engine im Speicher herumgesucht und mit den Werten gespielt.
             </aside>
           </section>
           <section>
             <img src="images/memoryWrite.png">
             <aside class="notes">
-              Ich wollte wissen wie man einen Trainer schreibt und ein Spiel von außen veraendert.
+              Weil ich jetzt weiß wo der Spieler im Speicher steht kann ich mir eigenes Program schreiben welches alle Werte auf einen maximal Wert setzt.
             </aside>
           </section>
           <section>
             <img src="images/imgui_overlay.png">
             <aside class="notes">
-              Danach habe ich herausgefunden wie man die Zeichenfunktionen des Spiels nutzen kann um eigene Grafik auf dem Bildschirm bringen.
+              Noch cooler als die Werte von außen zu bearbeiten ist es wenn man die Werte waehren dem Spielens bearbeiten kann.
+              Ich hab also gelernt wie sogenannten Proxy DLLs funktionieren und nutze die Zeichenfunktionen des Spiels um eigene Grafiken auf dem Bildschirm zu zeichnen.
+              Windows ist recht einfach gestrickt was DLls betrifft. Ein Program versucht immer zuerst die DLLs aus dem eigenen Verzeichnis zu laden.
+              Man schreibt also eine DLL die alle Funktionen der originalen enthaelt und packt seinen eigenen Code oben drauf.
+              Das Spiel laed diese dann und fuehrt den zusaetzlichen Code aus.
+              Ich bin jetzt also im Spiel drin und kann alles machen was ich moechte.
             </aside>
           </section>
           <section>
             <img src="images/silver_window_mode.png">
             <aside class="notes">
-              Ich habe angefangen einen Patch fuer Silver zu schreiben um das Spiel im Fenster Modus spielen zu koennen.
+              Silver laesst sich leider nur im Vollbild spielen und zum Debuggen und Coden ist das nicht so geil. Drum hab ich angefangen einen Patch fuer zu schreiben um das Spiel im Fenster Modus starten zu koennen.
             </aside>
           </section>
           <section>
             <img src="images/kaitai.jpg">
             <aside class="notes">
-              Aktuell versuche ich die Bilder, Levels, Sounds usw aus dem Spiel zu extrahieren. Dafuer nutze ich Kaitai um zu verstehen wie die Binaerdateien aufgebaut sind.
+              Aktuell versuche ich die Bilder, Levels, Sounds usw aus dem Spiel zu extrahieren. Dafuer nutze ich wieder Kaitai um zu verstehen wie die Binaerdateien aufgebaut sind.
+              Man kann auch an die Stellen im Code gehen in der die Dateien geladen werden und versuchen die Funktionen nachzubauen.
             </aside>
           </section>
           <section>
             <p>Und danach?</p>
             <aside class="notes">
-              Ich wuerde gerne eine Open Source Variante des Spiels entwickeln. Das hat eigentlich keinen besonderen Grund. Ich hab mir Silver ausgesucht weil es recht alt und ziemlich einfach aufgebaut ist.
-              Als Einstiegsprojekt also eine gute Wahl.
+              Also ich wuerde gerne eine Open Source Variante des Spiels entwickeln. Das hat eigentlich keinen besonderen Grund. Ich hab mir Silver ausgesucht weil es recht alt und ziemlich einfach aufgebaut ist.
+              Als Einstiegsprojekt also eine gute Wahl. Mal schauen was daraus wird :)
             </aside>
           </section>
         </section>

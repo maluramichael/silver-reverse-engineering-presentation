@@ -147,14 +147,19 @@ mov     ecx, [esi]
               <li>Also was kann man nun alles damit anstellen?</li>
               <li>Remakes: Man kann alten Spielen ein neues Leben geben. Einige Spiele laufen nicht auf neuen System oder sind nur fuer eine Platform vorgesehen. Man koennte also ein Remake des Spiels bauen welches auf aktuellen Systemen laueft.</li>
               <li>Patches: Der Entwickler hat einen Fehler gemacht und das Spiel stuerzt unter Windows 10 ab? Kein Problem wir koennen versuchen ihn zu fixen.</li>
-              <li>Mods: In Diablo 3 zum Beispiel fehlt eine Anzeige wie viel Schaden man jetzt gerade macht, also wurde TurbuHUD entwickelt. Ein Overlay welches alle moeglichen Informationen ueber Spiel legt.</li>
-              <li>GTA San Andreas ist ein reines Single Player Abenteuer. Drum haben sich eine schlaue Leute hingesetzt und einen Multiplayer Modus entwickelt.</li>
-              <li>Private Server: Bekanntlich kosten viele MMORPGs jeden Monta Geld. Es gibt fuer einige dieser MMOs inoffizielle Server. Die konnten nur entwickelt werden weil man voher reverse engineering betrieben hat um herauszufinden wie das Netzwerk Protokol funktioniert.</li>
+              <li>Mods: In Diablo 3 zum Beispiel fehlt eine Anzeige wie viel Schaden man jetzt gerade macht, also wurde TurbuHUD entwickelt. Ein Overlay was alle moeglichen Informationen ueber Spiel legt.</li>
+              <li>GTA San Andreas ist ein reines Single Player Abenteuer. Drum haben sich ein paar schlaue Leute hingesetzt und einen Multiplayer Modus entwickelt.</li>
+              <li>Private Server: Bekanntlich kosten viele MMORPGs jeden Monat Geld. Es gibt fuer einige dieser MMOs inoffizielle Server. Die konnten nur entwickelt werden weil man voher mit reverse engineering das Netzwerk Protokol studiert und nachgebaut hat.</li>
               <li>Cheats: Man kann unsterblich sein oder alle Gegenstaende freischalten. Ich wuerde sagen Cheats sind die einfachste Disziplin beim reverse engineering und man kommt recht schnell zu einem Ergebnis.</li>
             </ul>
           </aside>
         </section>
         <section>
+          <section>
+            <aside class="notes">
+              Wie faengt man an?
+            </aside>
+          </section>
           <section>
             <div>Disassembler (IDA)</div>
             <img src="images/ida_silver.png">
@@ -227,7 +232,6 @@ mov     ecx, [esi]
             <aside class="notes">
               Jetzt muss man ein wenig rumprobieren. Lebenspunkte sind normalerweise als Integer abgespeichert, daher stet der Value Type auf 4 Bytes und nicht auf Float oder String. Als Wert gebe ich 132 ein und druecke New Scan.
               Wir haben jetzt 100 moegliche Stellen im Speicher gefunden in denen aktuell 132 steht.
-
             </aside>
           </section>
           <section>

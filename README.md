@@ -4,4 +4,4 @@ I used silver as an example
 
 ## View Demo
 
-[Visit this page](https://malura.de/project/silver-reverse-engineering-presentation/index.html)
+[Visit this page](https://malura.de/files/presentations/silver-reverse-engineering-presentation/)
